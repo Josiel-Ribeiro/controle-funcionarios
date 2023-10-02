@@ -37,5 +37,42 @@ export const Colaboradores:Funcionarios[] = [
     email:"Josiallucas615@gmail.com",
     funcao:"TI",
     status:false
- }
+ },
+ 
+ {
+    id: 6,
+    nome: "Maria Silva",
+    email: "maria.silva@example.com",
+    funcao: "RH",
+    status: true
+},
+{
+    id: 7,
+    nome: "Pedro Santos",
+    email: "pedro.santos@example.com",
+    funcao: "Marketing",
+    status: false
+},
+{
+    id: 8,
+    nome: "Ana Rodrigues",
+    email: "ana.rodrigues@example.com",
+    funcao: "Vendas",
+    status: true
+},
+{
+    id: 9,
+    nome: "Lucas Oliveira",
+    email: "lucas.oliveira@example.com",
+    funcao: "Financeiro",
+    status: false
+},
+{
+    id: 10,
+    nome: "Mariana Pereira",
+    email: "mariana.pereira@example.com",
+    funcao: "Logística",
+    status: true
+}
+    
 ]
