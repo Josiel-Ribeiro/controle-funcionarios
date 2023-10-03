@@ -47,31 +47,8 @@ Section: ({lista}:Props)=>{
     return(
         <section className="w-11/12 mx-auto ">
         
-        <table  className="w-full">
-            <thead className="bg-red-500 h-12 rounded-md hidden sm:flex sm:justify-around ">
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Função</th>
-                <th>Status</th>
-            </thead>
-        </table>
-            {
-                lista.map(item =>
-                    <tr key={item.id} className="flex justify-around border-b border">
-                     <td>
-                        {item.nome}
-                        <p className="font-semibold text-gray-400">{item.email}</p>
-                        </td>
-                     
-                     <td className="font-bold">{item.funcao}</td>
-                     <td className={`${item.status && "text-green-400 cursor-pointer"} ${!item.status && "text-red-500 cursor-pointer"}`}>
-                        {item.status && "Active" }
-                        {!item.status && "Inactive" }
-                     </td>
-                    </tr>
-                    
-                    )
-            }
+        
+            
                 
         </section>
     )
