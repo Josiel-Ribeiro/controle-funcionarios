@@ -44,7 +44,7 @@ export const Header = ({ filterAtivos, all, filterIntivos,newTela }: PropsHeade)
   return (
     <header className=" flex h-32 w-full mx-auto justify-between bg-gray-700/60 ">
       <div className=" w-24 h-24 mt-4 ml-5 bg-gray-300 rounded-full text-center sm:ml-28">
-        Logo
+        <p className="mt-8 font-bold ">Logo</p>
       </div>
       <div className="sm:hidden">
         <h1 onClick={mostrar} className="mr-16 mt-2 text-white cursor-pointer">
@@ -253,9 +253,9 @@ export const Formulario = ({voltar,addEmail,addFuncao,addNome,handleSubmit}:Prop
     <div className=" w-full h-full flex justify-center items-center  bg-gray-700">
       
       <form method="" onSubmit={(e)=>handleSubmit} className="">
-        <p className="mb-10 "><input onChange={e => addNome(e.target.value)} name="nome" placeholder="Nome" type="text" className="rounded-md h-8 w-72 mt-10 placeholder:text-center outline-blue-600" /></p>
-        <p className="mb-10"><input onChange={e => addEmail(e.target.value)} name="email" placeholder="Email" type="text" className="rounded-md h-8 w-72 placeholder:text-center outline-blue-600" /></p>
-        <p className="mb-10 text-center"><input onChange={e => addFuncao(e.target.value)} name="funcao" placeholder="Função" type="text"  className="rounded-md h-8 placeholder:text-center outline-blue-600"/></p>
+        <p className="mb-10 "><input onChange={e => addNome(e.target.value)} required name="nome" placeholder="Nome" type="text" className="rounded-md h-8 w-72 mt-10 placeholder:text-center outline-blue-600" /></p>
+        <p className="mb-10"><input onChange={e => addEmail(e.target.value)} required name="email" placeholder="Email" type="text" className="rounded-md h-8 w-72 placeholder:text-center outline-blue-600" /></p>
+        <p className="mb-10 text-center"><input onChange={e => addFuncao(e.target.value)} required name="funcao" placeholder="Função" type="text"  className="rounded-md h-8 placeholder:text-center outline-blue-600"/></p>
         <p className="mb-10 text-center"><input  type="submit"  value="Adicionar" className="text-blue-600 hover:text-green-500 cursor-pointer"/></p>
         <p className="text-center text-blue-600 hover:text-green-500"><input onClick={voltar} type="button" value="Voltar"  className="cursor-pointer"/></p>
       </form>

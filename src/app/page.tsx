@@ -77,6 +77,7 @@ export const Page = () => {
     })
 
     const handleSubmit = (e:React.FormEvent) => {
+      
       e.preventDefault(); // Evita que o formulário seja enviado por padrão
       // Faça o que quiser com os dados do formulário aqui
       console.log('Dados do formulário:', data);
