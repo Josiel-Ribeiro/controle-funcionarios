@@ -1,59 +1,264 @@
-import { useState } from "react"
-import { Funcionarios } from "../types/Funcionarios"
+import {  useState } from "react";
+import { Funcionarios } from "../types/Funcionarios";
 
 type Props = {
-    lista:Funcionarios[]
+  lista: Funcionarios[];
+  onClick: (id: number) => void;
+  alterarStatus: (id: number) => void;
+};
+
+type PropsRemove = {
+  onClick: () => void;
+  noremove: () => void;
+};
+
+type PropsHeade = {
+  filterAtivos: () => void;
+  filterIntivos: () => void;
+  all: () => void;
+  newTela: () => void;
+};
+
+type PropsSearch = {
+  set: (e: string) => void;
+  buscar: () => void;
+  value: string;
+};
+
+type PropsForm = {
+  voltar:()=>void
+  addNome: (nome: string) => void;
+  addEmail: (email: string) => void;
+  addFuncao: (funcao: string) => void;
+  handleSubmit:(e:React.FormEvent)=>void
+  
 }
 
-export const Components = {
-Header: ()=>{
+export const Header = ({ filterAtivos, all, filterIntivos,newTela }: PropsHeade) => {
+  const [menu, setMenu] = useState(true);
 
-    const [menu,setMenu] = useState(false)
+  const mostrar = () => {
+    setMenu(!menu);
+  };
 
-    const exibirMenu = () =>{
+  return (
+    <header className=" flex h-32 w-full mx-auto justify-between bg-gray-700/60 ">
+      <div className=" w-24 h-24 mt-4 ml-5 bg-gray-300 rounded-full text-center sm:ml-28">
+        Logo
+      </div>
+      <div className="sm:hidden">
+        <h1 onClick={mostrar} className="mr-16 mt-2 text-white cursor-pointer">
+          Menu
+        </h1>
 
-        setMenu(!menu)
-    }
-    return (
-        <header className=" flex w-11/12 mx-auto  bg-gray-800 rounded-md ">
-        <div className="w-24 h-24 p-12 ml-5 bg-gray-400 rounded-full text-center"></div>
-        <div className="w-full h-24 flex justify-end">
-            
-            <div className="mr-5 sm:hidden">
-                <h1 onClick={exibirMenu} className="cursor-pointer mt-5 text-white">Menu</h1>
-                <div className={`${!menu &&  " bg-blue-100 overflow-hidden h-0"}`}>
-                    <p className="hover:text-blue-500 cursor-pointer text-gray-400">All</p>
-                    <p className="hover:text-blue-500 cursor-pointer text-white">New</p>
-                    <p className="hover:text-blue-500 cursor-pointer text-white">Ative</p>
-                    <p className="hover:text-blue-500 cursor-pointer text-white">Inactive</p>
-                </div>
-            </div>
-           <div className="w-full hidden sm:block">
-           <ul className="w-full h-full flex justify-around items-center text-white" >
-            <li>All</li>
-            <li>New</li>
-            <li>Active</li>
-            <li>Inactive</li>
-        </ul>
-           </div>
-        </div>
-        
+        {!menu && (
+          <ul className="fixed h-auto overflow-hidden">
+            <li
+              onClick={all}
+              className="cursor-pointer text-white hover:text-red-600"
+            >
+              All
+            </li>
+            <li
+              onClick={filterAtivos}
+              className="cursor-pointer text-white hover:text-red-600"
+            >
+              Active
+            </li>
+            <li
+              onClick={filterIntivos}
+              className="cursor-pointer text-white hover:text-red-600"
+            >
+              Inactive
+            </li>
+            <li onClick={newTela} className="cursor-pointer text-white hover:text-red-600">
+              New
+            </li>
+          </ul>
+        )}
+      </div>
+      <div className="hidden sm:flex justify-around w-9/12  ">
+        <button
+          onClick={all}
+          className="cursor-pointer text-white  hover:text-red-600"
+        >
+          All
+        </button>
+        <button
+          onClick={filterAtivos}
+          className="cursor-pointer text-white hover:text-red-600"
+        >
+          Active
+        </button>
+        <button
+          onClick={filterIntivos}
+          className="cursor-pointer  text-white hover:text-red-600"
+        >
+          Inactive
+        </button>
+        <button onClick={newTela} className="cursor-pointer text-white hover:text-red-600">
+          New
+        </button>
+      </div>
     </header>
-    )
-},
+  );
+};
 
-Section: ({lista}:Props)=>{
+export const Section = ({ lista, onClick, alterarStatus }: Props) => {
+  return (
+    <div className=" fixed  overflow-hidden overflow-y-auto mt-7 w-full mb-5 sm:w-11/12 sm:ml-16 h-4/6 m-5 mx-auto">
+      <table className="w-full mx-auto border-b border-red-600 ">
+        <thead className=" bg-red-600 text-left w-full">
+          <tr className="font-extrabold">
+            <th className="text-white sm:hidden">Info</th>
+            <th className="hidden text-white sm:table-cell ">Nome</th>
+            <th className="hidden text-white sm:table-cell">Email</th>
+            <th className="hidden text-white sm:table-cell">Função</th>
+            <th className=" text-white">status</th>
+          </tr>
+        </thead>
+        <tbody className="text-left border-b border-red-500">
+          {lista.map((item) => (
+            <tr key={item.id} className="border-b border">
+              <td className="sm:hidden ">
+                <p className="font-bold text-white">{item.nome}</p>
+                <p className="text-white">{item.email}</p>
+                <p className="text-white">{item.funcao}</p>
+              </td>
 
-    return(
-        <section className="w-11/12 mx-auto ">
-        
-        
-            
-                
-        </section>
-    )
+              <td className="hidden text-white sm:table-cell sm:h-12">
+                {item.nome}
+              </td>
+              <td className="hidden text-white sm:table-cell">{item.email}</td>
+              <td className="hidden text-white sm:table-cell">{item.funcao}</td>
+
+              <td>
+                {item.status && (
+                  <div className="flex">
+                    <button
+                      onClick={() => alterarStatus(item.id)}
+                      className="w-14 bg-green-500 rounded-md"
+                    >
+                      Ativo
+                    </button>
+                    <button
+                      onClick={() => onClick(item.id)}
+                      className="text-red-600 ml-3 font-bold"
+                    >
+                      X
+                    </button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-5 h-5  ml-2 cursor-pointer"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      />
+                    </svg>
+                  </div>
+                )}
+                {!item.status && (
+                  <div className="flex">
+                    <button
+                      onClick={() => alterarStatus(item.id)}
+                      className="w-14 bg-gray-300/40 rounded-md"
+                    >
+                      Inativo
+                    </button>
+                    <button
+                      onClick={() => onClick(item.id)}
+                      className="text-red-600 ml-3 font-bold"
+                    >
+                      X
+                    </button>
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      className="w-5 h-5  ml-2 cursor-pointer"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export const Excluir = ({ onClick, noremove }: PropsRemove) => {
+  return (
+    <div className="fixed w-full h-full bg-black/60 flex">
+      <div className="w-full h-16 bg-black/90 text-center mt-32">
+        <h1 className="text-white mt-2">Deseja mesmo excluir este registro?</h1>
+        <div>
+          <button
+            onClick={onClick}
+            className=" text-white px-2 py-1 hover:text-red-500"
+          >
+            Sim
+          </button>
+          <button
+            onClick={noremove}
+            className=" text-white px-2 py-1 hover:text-red-500"
+          >
+            Não
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const Search = ({ buscar, set, value }: PropsSearch) => {
+  return (
+    <>
+      <input
+        value={value}
+        placeholder="Digite o nome do colaborador"
+        onChange={(e) => set(e.target.value)}
+        type="text"
+        className="border border-white  rounded-md sm:ml-16 w-60 outline-white"
+      />
+      <button
+        onClick={buscar}
+        className=" px-1 text-white  border border-white rounded-md hover:text-green-600 hover:border-green-500"
+      >
+        Buscar
+      </button>
+    </>
+  );
+};
+
+export const Formulario = ({voltar,addEmail,addFuncao,addNome,handleSubmit}:PropsForm)=>{
+
+  return(
+    <div className=" w-full h-full flex justify-center items-center  bg-gray-700">
+      
+      <form method="" onSubmit={(e)=>handleSubmit} className="">
+        <p className="mb-10 "><input onChange={e => addNome(e.target.value)} name="nome" placeholder="Nome" type="text" className="rounded-md h-8 w-72 mt-10 placeholder:text-center outline-blue-600" /></p>
+        <p className="mb-10"><input onChange={e => addEmail(e.target.value)} name="email" placeholder="Email" type="text" className="rounded-md h-8 w-72 placeholder:text-center outline-blue-600" /></p>
+        <p className="mb-10 text-center"><input onChange={e => addFuncao(e.target.value)} name="funcao" placeholder="Função" type="text"  className="rounded-md h-8 placeholder:text-center outline-blue-600"/></p>
+        <p className="mb-10 text-center"><input  type="submit"  value="Adicionar" className="text-blue-600 hover:text-green-500 cursor-pointer"/></p>
+        <p className="text-center text-blue-600 hover:text-green-500"><input onClick={voltar} type="button" value="Voltar"  className="cursor-pointer"/></p>
+      </form>
+    </div>
+  )
 }
-    
-}
-
-export default Components

@@ -2,77 +2,145 @@ import { Funcionarios } from "../types/Funcionarios";
 
 export const Colaboradores:Funcionarios[] = [
 
-  {  id:1,
-   nome:"Josiel Lucas",
-   email:"Josiallucas615@gmail.com",
-   funcao:"TI",
-   status:true
-},
-{  id:2,
-    nome:"Josiel Lucas",
-    email:"Josiallucas615@gmail.com",
-    funcao:"TI",
-    status:false
- }
-
- ,
-{  id:3,
-    nome:"Josiel Lucas",
-    email:"Josiallucas615@gmail.com",
-    funcao:"TI",
-    status:true
- }
-
- ,
-{  id:4,
-    nome:"Josiel Lucas",
-    email:"Josiallucas615@gmail.com",
-    funcao:"TI",
-    status:true
- }
-
- ,
-{  id:5,
-    nome:"Josiel Lucas",
-    email:"Josiallucas615@gmail.com",
-    funcao:"TI",
-    status:false
- },
- 
- {
-    id: 6,
+  {
+    id: 1,
+    nome: "Josiel Lucas",
+    email: "JosielLucas615@gmail.com",
+    funcao: "TI",
+    status: true,
+  },
+  {
+    id: 2,
     nome: "Maria Silva",
     email: "maria.silva@example.com",
-    funcao: "RH",
-    status: true
-},
-{
-    id: 7,
-    nome: "Pedro Santos",
-    email: "pedro.santos@example.com",
     funcao: "Marketing",
-    status: false
-},
-{
-    id: 8,
-    nome: "Ana Rodrigues",
-    email: "ana.rodrigues@example.com",
+    status: false,
+  },
+  {
+    id: 3,
+    nome: "João Souza",
+    email: "joao.souza@example.com",
     funcao: "Vendas",
-    status: true
-},
-{
-    id: 9,
-    nome: "Lucas Oliveira",
-    email: "lucas.oliveira@example.com",
-    funcao: "Financeiro",
-    status: false
-},
-{
-    id: 10,
-    nome: "Mariana Pereira",
-    email: "mariana.pereira@example.com",
+    status: true,
+  },
+  {
+    id: 4,
+    nome: "Ana Oliveira",
+    email: "ana.oliveira@example.com",
+    funcao: "Recursos Humanos",
+    status: false,
+  },
+  {
+    id: 5,
+    nome: "Carlos Santos",
+    email: "carlos.santos@example.com",
+    funcao: "Contabilidade",
+    status: true,
+  },
+  {
+    id: 6,
+    nome: "Mariana Ferreira",
+    email: "mariana.ferreira@example.com",
     funcao: "Logística",
-    status: true
-}
-    
+    status: false,
+  },
+  {
+    id: 7,
+    nome: "Pedro Rodrigues",
+    email: "pedro.rodrigues@example.com",
+    funcao: "Engenharia",
+    status: true,
+  },
+  {
+    id: 8,
+    nome: "Lucia Costa",
+    email: "lucia.costa@example.com",
+    funcao: "Jurídico",
+    status: false,
+  },
+  {
+    id: 9,
+    nome: "Eduardo Alves",
+    email: "eduardo.alves@example.com",
+    funcao: "Suporte Técnico",
+    status: true,
+  },
+  {
+    id: 10,
+    nome: "Julia Fernandes",
+    email: "julia.fernandes@example.com",
+    funcao: "Recrutamento",
+    status: false,
+  },
+  {
+    id: 11,
+    nome: "Marcos Pereira",
+    email: "marcos.pereira@example.com",
+    funcao: "Desenvolvimento",
+    status: true,
+  },
+  {
+    id: 12,
+    nome: "Sandra Lima",
+    email: "sandra.lima@example.com",
+    funcao: "Administração",
+    status: false,
+  },
+  {
+    id: 13,
+    nome: "Rafaela Gonçalves",
+    email: "rafaela.goncalves@example.com",
+    funcao: "Atendimento ao Cliente",
+    status: true,
+  },
+  {
+    id: 14,
+    nome: "Roberto Barbosa",
+    email: "roberto.barbosa@example.com",
+    funcao: "Marketing",
+    status: false,
+  },
+  {
+    id: 15,
+    nome: "Isabela Fernandes",
+    email: "isabela.fernandes@example.com",
+    funcao: "Vendas",
+    status: true,
+  },
+  {
+    id: 16,
+    nome: "Felipe Oliveira",
+    email: "felipe.oliveira@example.com",
+    funcao: "Logística",
+    status: false,
+  },
+  {
+    id: 17,
+    nome: "Tatiana Silva",
+    email: "tatiana.silva@example.com",
+    funcao: "Engenharia",
+    status: true,
+  },
+  {
+    id: 18,
+    nome: "Lucas Santos",
+    email: "lucas.santos@example.com",
+    funcao: "Recursos Humanos",
+    status: false,
+  },
+  {
+    id: 19,
+    nome: "Carolina Sousa",
+    email: "carolina.sousa@example.com",
+    funcao: "Contabilidade",
+    status: true,
+  },
+  {
+    id: 20,
+    nome: "Gustavo Rodrigues",
+    email: "gustavo.rodrigues@example.com",
+    funcao: "TI",
+    status: false,
+  }
+
 ]
