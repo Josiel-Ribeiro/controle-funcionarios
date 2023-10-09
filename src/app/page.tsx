@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Excluir, Formulario, Header, Search, Section } from "./components/Componentes";
+import { AbaEdicao, Excluir, Formulario, Header, Search, Section } from "./components/Componentes";
 import { Colaboradores } from "./data/Colaboradores";
 import { Funcionarios } from "./types/Funcionarios";
 
@@ -105,6 +105,46 @@ export const Page = () => {
       }
     }
   
+    const [showEdit, setShowEdit] = useState(false)
+    const [itemEdit, setItemEdit] = useState<Funcionarios>({id: 1,
+      nome: 'Nome do Funcionário',
+      email: 'email@exemplo.com',
+      funcao: 'Função do Funcionário',
+      status: true,})
+
+    const editar = (id:number)=>{
+
+      setShowEdit(true)
+
+      let newList = [...lista]
+
+      let item = newList.find(colaborador => colaborador.id === id)
+
+      if(item){
+        setItemEdit(item)
+      }
+
+    }
+
+    const closeEdit = ()=>{
+      setShowEdit(false)
+    }
+
+    const salvar = (item:Funcionarios)=>{
+
+      const newList:Funcionarios[] = lista.map((colaborador)=>{
+
+        if(colaborador.id === item.id){
+          return{...colaborador, nome:item.nome,email:item.email,funcao:item.funcao}
+        }else{
+          return colaborador
+        }
+      })
+
+      setLista(newList)
+      setShowEdit(false)
+
+    }
   
 
   return (
@@ -114,16 +154,22 @@ export const Page = () => {
     {!showForm &&    <Section
         lista={lista}
         onClick={setItemRemove}
-        alterarStatus={alterarStatus}
+        alterarStatus={alterarStatus}editar={editar}
       />}
 
-      {!showForm && <Search buscar={buscar} set={set} value={value}/>}
+      {!showForm && !showEdit && <Search buscar={buscar} set={set} value={value}/>}
 
       {confirmRemove && <Excluir noremove={NoRemove} onClick={remove} />}
 
     {showForm  &&  <Formulario addEmail={formAdd.addEmail}addFuncao={formAdd.addFuncao}addNome={formAdd.addNome} voltar={noTela} handleSubmit={handleSubmit}/>}
 
+    {
+      showEdit && <AbaEdicao item={itemEdit} onClick={salvar}close={closeEdit}/>
+    }
+
 </div>
+
+
   );
 };
 
