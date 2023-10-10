@@ -4,7 +4,7 @@ import { AbaEdicao, Excluir, Formulario, Header, Search, Section } from "./compo
 import { Colaboradores } from "./data/Colaboradores";
 import { Funcionarios } from "./types/Funcionarios";
 
-export const Page = () => {
+export const Page = () => {435697
   const listaOriginal = [...Colaboradores];
   const [lista, setLista] = useState(listaOriginal);
   const [itemExcluir, setItemExcluir] = useState(0);
@@ -68,23 +68,7 @@ export const Page = () => {
   };
 
     const [showForm, setShowForm] = useState(false)
-    const [data, setData] = useState<Funcionarios>({
-      id:Math.floor(Math.random()*(10+1)),
-      nome:"",
-      email:"",
-      funcao:"",
-      status:true
-    })
-
-    const handleSubmit = (e:React.FormEvent) => {
-      
-      e.preventDefault(); // Evita que o formulário seja enviado por padrão
-      // Faça o que quiser com os dados do formulário aqui
-      console.log('Dados do formulário:', data);
-  
-      // Adicione 'data' à lista
-      setLista([...lista, data]);}
-
+    
     const newTela = ()=>{
       setShowForm(true)
     }
@@ -93,17 +77,10 @@ export const Page = () => {
       setShowForm(false)
     }
 
-    const formAdd = {
-      addNome:(nome:string)=>{
-        setData({...data,nome:nome})
-      },
-      addEmail:(email:string)=>{
-        setData({...data,email:email})
-      },
-      addFuncao:(funcao:string)=>{
-        setData({...data,funcao:funcao})
-      }
-    }
+   
+
+    
+
   
     const [showEdit, setShowEdit] = useState(false)
     const [itemEdit, setItemEdit] = useState<Funcionarios>({id: 1,
@@ -161,7 +138,7 @@ export const Page = () => {
 
       {confirmRemove && <Excluir noremove={NoRemove} onClick={remove} />}
 
-    {showForm  &&  <Formulario addEmail={formAdd.addEmail}addFuncao={formAdd.addFuncao}addNome={formAdd.addNome} voltar={noTela} handleSubmit={handleSubmit}/>}
+    {showForm  &&  <Formulario  voltar={noTela} />}
 
     {
       showEdit && <AbaEdicao item={itemEdit} onClick={salvar}close={closeEdit}/>

@@ -28,11 +28,6 @@ type PropsSearch = {
 
 type PropsForm = {
   voltar:()=>void
-  addNome: (nome: string) => void;
-  addEmail: (email: string) => void;
-  addFuncao: (funcao: string) => void;
-  handleSubmit:(e:React.FormEvent)=>void
-  
 }
 
 type PropsEdit = {
@@ -254,18 +249,22 @@ export const Search = ({ buscar, set, value }: PropsSearch) => {
   );
 };
 
-export const Formulario = ({voltar,addEmail,addFuncao,addNome,handleSubmit}:PropsForm)=>{
+export const Formulario = ({voltar}:PropsForm)=>{
 
   return(
-    <div className=" w-full h-full flex justify-center items-center  bg-gray-700">
+    <div className=" w-full h-full flex-col  bg-gray-700 flex justify-center items-center">
+      <h1 className="mb-8 text-xl font-semibold text-gray-300">Novo registro</h1>
       
-      <form method="" onSubmit={(e)=>handleSubmit} className="">
-        <p className="mb-10 "><input onChange={e => addNome(e.target.value)} required name="nome" placeholder="Nome" type="text" className="text-center rounded-md h-8 w-72 mt-10 placeholder:text-center outline-blue-600" /></p>
-        <p className="mb-10"><input onChange={e => addEmail(e.target.value)} required name="email" placeholder="Email" type="text" className="text-center rounded-md h-8 w-72 placeholder:text-center outline-blue-600" /></p>
-        <p className="mb-10 text-center"><input onChange={e => addFuncao(e.target.value)} required name="funcao" placeholder="Função" type="text"  className="text-center rounded-md h-8 placeholder:text-center outline-blue-600"/></p>
-        <p className="mb-10 text-center"><input  type="submit"  value="Adicionar" className="text-blue-600 hover:text-green-500 cursor-pointer"/></p>
-        <p className="text-center text-blue-600 hover:text-green-500"><input onClick={voltar} type="button" value="Voltar"  className="cursor-pointer"/></p>
-      </form>
+      <div>
+      <p className="mb-8 "><input type="text" placeholder="Nome" className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
+      <p className="mb-8"><input type="text" placeholder="Emal" className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
+      <p className="mb-8 text-center"><input type="text" placeholder="Função" className="text-center text-white placeholder:text-center w-32 mx-auto h-7 hover:placeholder:text-green-500  bg-gray-700 border-b border-green-500 " /></p>
+      </div>
+
+      <p className="text-center"> <button  className="text-white px-2 py-1 bg-green-500 rounded-md mb-3">Adicionar</button></p>
+        <p className="text-center text-gray-300"><input onClick={voltar} type="button" value="Voltar"  className="cursor-pointer"/></p>
+       
+      
     </div>
   )
 }
@@ -296,8 +295,8 @@ export const AbaEdicao = ({item,onClick,close}:PropsEdit)=>{
     Nome: <input type="text" placeholder={colaborador.nome} onChange={e => setValueNome(e.target.value)} className="bg-black/80 border-b border-green-500 outline-none text-white text-center"/>
        Email: <input type="text" placeholder={colaborador.email} onChange={e => setValueEmail(e.target.value)} className="bg-black/80 border-b border-green-500 outline-none text-white text-center" />
        Função: <input type="text" placeholder={colaborador.funcao} onChange={e => setValueFuncao(e.target.value)}  className="bg-black/80 border-b border-green-500 outline-none text-white w-56 mx-auto text-center"/>
-       <p className="text-white text-center mt-8"><button onClick={()=>onClick(colaborador)} className="px-2 py-1 bg-blue-500 rounded-md">Salvar</button></p>
-       <p className="text-center mt-5"><button onClick={close} className="text-white hover:border-b border-blue-600">Sair </button> </p>
+       <p className="text-white text-center mt-8"><button onClick={()=>onClick(colaborador)} className="px-2 py-1 bg-green-500 rounded-md">Salvar</button></p>
+       <p className="text-center mt-5"><button onClick={close} className="text-white hover:border-b border-green-600">Sair </button> </p>
       
     
     </div>
