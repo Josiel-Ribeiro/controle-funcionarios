@@ -4,7 +4,7 @@ import { AbaEdicao, Excluir, Formulario, Header, Search, Section } from "./compo
 import { Colaboradores } from "./data/Colaboradores";
 import { Funcionarios } from "./types/Funcionarios";
 
-export const Page = () => {435697
+export const Page = () => {
   const listaOriginal = [...Colaboradores];
   const [lista, setLista] = useState(listaOriginal);
   const [itemExcluir, setItemExcluir] = useState(0);
@@ -123,6 +123,39 @@ export const Page = () => {435697
 
     }
   
+    const [valoresInput,setValoresInput] = useState<Funcionarios>({
+      id:Math.floor(Math.random() + 10 *11),
+      nome:'Nome',
+      email:"email",
+      funcao:"função",
+      status:true
+    })
+
+
+    const getName  = (nome:string)=>{
+
+      let nomeFuncionario = {...valoresInput,nome:nome}      
+      setValoresInput(nomeFuncionario)
+    }
+
+    const getEmail  = (email:string)=>{
+
+      let emailFuncionario = {...valoresInput,email:email}      
+      setValoresInput(emailFuncionario)
+    }
+
+    const getFuncao  = (funcao:string)=>{
+
+      let funcaoFuncionario = {...valoresInput,funcao:funcao}      
+      setValoresInput(funcaoFuncionario)
+    }
+
+    const adicionarNovoFuncionario = ()=>{
+      let newList = [...lista,valoresInput]
+      setLista(newList)
+      setShowForm(false)
+    }
+
 
   return (
     <div className="w-screen h-screen border-b-4 border-red-500 bg-gray-600 ">
@@ -138,7 +171,7 @@ export const Page = () => {435697
 
       {confirmRemove && <Excluir noremove={NoRemove} onClick={remove} />}
 
-    {showForm  &&  <Formulario  voltar={noTela} />}
+    {showForm  &&  <Formulario  voltar={noTela}adicionar={adicionarNovoFuncionario}getEmail={getEmail}getFuncao={getFuncao}getName={getName} />}
 
     {
       showEdit && <AbaEdicao item={itemEdit} onClick={salvar}close={closeEdit}/>

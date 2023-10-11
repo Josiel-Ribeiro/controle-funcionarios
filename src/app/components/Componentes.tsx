@@ -28,6 +28,10 @@ type PropsSearch = {
 
 type PropsForm = {
   voltar:()=>void
+  getName:(nome:string)=>void
+  getEmail:(email:string)=>void
+  getFuncao:(funcao:string)=>void
+  adicionar:()=>void
 }
 
 type PropsEdit = {
@@ -249,19 +253,19 @@ export const Search = ({ buscar, set, value }: PropsSearch) => {
   );
 };
 
-export const Formulario = ({voltar}:PropsForm)=>{
+export const Formulario = ({voltar,adicionar,getEmail,getFuncao,getName}:PropsForm)=>{
 
   return(
     <div className=" w-full h-full flex-col  bg-gray-700 flex justify-center items-center">
       <h1 className="mb-8 text-xl font-semibold text-gray-300">Novo registro</h1>
       
       <div>
-      <p className="mb-8 "><input type="text" placeholder="Nome" className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
-      <p className="mb-8"><input type="text" placeholder="Emal" className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
-      <p className="mb-8 text-center"><input type="text" placeholder="Função" className="text-center text-white placeholder:text-center w-32 mx-auto h-7 hover:placeholder:text-green-500  bg-gray-700 border-b border-green-500 " /></p>
+      <p className="mb-8 "><input type="text" placeholder="Nome" onChange={e => getName(e.target.value)} className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
+      <p className="mb-8"><input type="text" placeholder="Emal" onChange={e=>getEmail(e.target.value)} className="text-center text-white placeholder:text-center h-7 w-96 hover:placeholder:text-green-500 bg-gray-700 border-b border-green-500"/></p>
+      <p className="mb-8 text-center"><input type="text" placeholder="Função" onChange={e=> getFuncao(e.target.value)} className="text-center text-white placeholder:text-center w-32 mx-auto h-7 hover:placeholder:text-green-500  bg-gray-700 border-b border-green-500 " /></p>
       </div>
 
-      <p className="text-center"> <button  className="text-white px-2 py-1 bg-green-500 rounded-md mb-3">Adicionar</button></p>
+      <p className="text-center"> <button onClick={adicionar} className="text-white px-2 py-1 bg-green-500 rounded-md mb-3">Adicionar</button></p>
         <p className="text-center text-gray-300"><input onClick={voltar} type="button" value="Voltar"  className="cursor-pointer"/></p>
        
       
